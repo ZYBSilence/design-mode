@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.format.annotation.DateTimeFormat;
+import sun.security.rsa.RSASignature;
 import work.entity.TestEntity;
 import work.goods.importGoods.A;
 import work.thread.ThreadTest;
@@ -215,10 +216,10 @@ public class Test {
 //        Random rand = new Random();
 //        int first = 0;
 //        int second = 0;
-//        for (int i = 0; i < 12; i++) {
+//        for (int i = 0; i < 100; i++) {
 //            // 获取随机数
 //            int randomNum = rand.nextInt(10000);
-//            if (randomNum>=0 && randomNum<5000){
+//            if (randomNum>=0 && randomNum<100){
 //                first ++;
 //            } else {
 //                second ++;
@@ -239,7 +240,39 @@ public class Test {
 //        for (Map.Entry<Integer, List<TestEntity>> integerListEntry : collect.entrySet()) {
 //            System.out.println(integerListEntry);
 //        }
+
+//        List<Integer> list = new ArrayList<>();
+////        list.add(1);
+////        list.add(2);
+//        Iterator<Integer> iterator = list.iterator();
+//        while (iterator.hasNext()){
+//            System.out.println(iterator.next());
+//            iterator.remove();
+//        }
+//        System.out.println(list);
+
+//        int a = 10, b = 4, c= 20, d= 6;
+//        System.out.println(a++*b);
+//        List<Integer> list = Arrays.asList(1, 2, 3);
+
+//        ArrayList<TestEntity> entities = new ArrayList<>();
+//        for (int i = 0; i < 100; i++) {
+//            TestEntity entity = new TestEntity(i);
+//            entities.add(entity);
+//        }
+//        Map<Integer, TestEntity> entityMap = entities.stream().collect(Collectors.toMap(TestEntity::getUserId, v -> v));
+//        long beforeTime = System.currentTimeMillis();
+//        for (int i = 0; i < 100; i++) {
+//            System.out.print(entityMap.get(i));
+//        }
+////        for (int i = 0; i < 100; i++) {
+////            Integer finalI = i;
+////            System.out.print( entities.stream().filter(v -> v.getUserId().equals(finalI)).findFirst().get());
+////        }
+//        long afterTime = System.currentTimeMillis() - beforeTime;
+//        System.out.println("\n" + afterTime);
     }
+
 
     public static void sengWeChatMsg() throws AWTException {
         String sentence = "...";// 定义要发送的话

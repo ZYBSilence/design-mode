@@ -15,6 +15,10 @@ public class TestEntity {
     public TestEntity() {
     }
 
+    public TestEntity(Integer userId) {
+        this.userId = userId;
+    }
+
     public TestEntity(Integer userId, String name) {
         this.userId = userId;
         this.name = name;

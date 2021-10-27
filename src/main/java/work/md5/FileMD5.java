@@ -93,11 +93,24 @@ public class FileMD5 {
         return digest;
     }
 
+
+    public static String JM(String inStr) {
+        byte[] a = inStr.getBytes();
+        for (int i = 0; i < a.length; i++) {
+            a[i] = (byte) (a[i] ^ 't');
+
+        }
+        return new String(a);
+    }
+
     public static void main(String[] args) throws IOException {
 
-        String md5 = getMd5ByFile(new File("/zywa/tomcat/webapps/ROOT/temp/1606459129023/ff808081747d1d000176086cfd7a0096sign.apk"));
-        System.out.println("MD5:" + md5);
+//        String md5 = getMd5ByFile(new File("E:\\text\\技术书籍相关\\技术书籍相关.txt"));
+//        System.out.println("MD5:" + md5);
 
+        System.out.println(getMD5("123"));
+        System.out.println(getMD5("123"));
+        System.out.println(getMD5("123"));
     }
 
 }

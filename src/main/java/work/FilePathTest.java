@@ -23,7 +23,7 @@ public class FilePathTest {
      * 通过文件夹路径收集下面的所有的文件（文件夹下的一级目录）
      * @param filePath 文件夹路径
      */
-    private static void readFilePath(String filePath) {
+    public static void readFilePath(String filePath) {
         File file = new File(filePath);
         File[] files = file.listFiles();
         if (files != null) {
@@ -43,7 +43,7 @@ public class FilePathTest {
      * @param fileType 文件类型
      * @return 指定类型文件集合
      */
-    private static List<File> getFileList(String filePath, String fileType) {
+    public static List<File> getFileList(String filePath, String fileType) {
         List<File> fileList = new ArrayList<>();
         File dir = new File(filePath);
         File[] files = dir.listFiles();
