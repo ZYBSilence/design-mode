@@ -1,11 +1,16 @@
 package work;
 
+import com.alibaba.excel.ExcelReader;
+import org.springframework.util.StringUtils;
+import work.entity.DataTableCEntity;
 import work.entity.DataTableEntity;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author pengzhihao
@@ -87,16 +92,24 @@ public class FileRead {
     }
 
     public static void main(String[] args) {
-        File file = new File("E:\\download\\cao\\数据\\数据\\batangas\\");
+        getHandler();
+        // 获取方差相关
+//        getFangCha();
+        // 拼接id集合
+//        exportIdList();
+    }
+
+    private static void getHandler() {
+        File file = new File("E:\\download\\cao\\12data\\12data\\Batangas\\");
         File[] files = file.listFiles();
         int i = 1;
         for (File file1 : files) {
             List<String> list = FileRead.read(file1);
             int j = 1, k = 0;
-            List<DataTableEntity> entities = new ArrayList<>();
+            List<DataTableCEntity> entities = new ArrayList<>();
             for (String s : list) {
                 String[] split = s.split(",");
-                DataTableEntity entity = null;
+                DataTableCEntity entity = null;
 //                if (i < 6) {
 //                    if (j == 1) {
 //                        entity = new DataTableEntity(k == 0 ? "LogIndex" : String.valueOf(k),
@@ -132,16 +145,17 @@ public class FileRead {
 //                }
 
                 if (j == 1){
-                    entity = new DataTableEntity(split[0],
-                            split[3], split[4], split[5], split[6], split[7],
-                            split[24], split[25], split[26], split[27], split[28],
-                            split[31], split[32], split[34], split[35], split[38],
-                            split[39], split[42], split[43], split[44], split[45]
-                    );
-                    entities.add(entity);
+//                    entity = new DataTableCEntity(split[0],
+//                            split[3], split[4], split[5], split[6], split[7],
+//                            split[24], split[25], split[26], split[27], split[28],
+//                            split[31], split[32], split[34], split[35], split[38],
+//                            split[39], split[42], split[43], split[44], split[45]
+//                    );
+//                    entities.add(entity);
                     j++;
-                } else if (Double.valueOf(split[3]) > 0){
-                    entity = new DataTableEntity(split[0],
+//                } else if (Double.valueOf(split[3]) > 0){
+                } else {
+                    entity = new DataTableCEntity(split[0],
                             split[3], split[4], split[5], split[6], split[7],
                             split[24], split[25], split[26], split[27], split[28],
                             split[31], split[32], split[34], split[35], split[38],
@@ -149,10 +163,75 @@ public class FileRead {
                     );
                     entities.add(entity);
                 }
+
             }
-            ExportExcelUtils.easyWrite(entities, "E:\\download\\cao\\down\\batangas\\" + file1.getName());
+            ExportExcelUtils.easyWrite(null, entities, "E:\\download\\cao\\12data\\12data\\down\\Batangas\\" + file1.getName());
             System.out.println(i);
             i++;
         }
+    }
+
+    private static void getFangCha() {
+        File file = new File("E:\\download\\cao\\12data\\12data\\Batangas\\");
+        File[] files = file.listFiles();
+        int i = 1;
+        for (File file1 : files) {
+            List<String> list = FileRead.read(file1);
+            List<DataTableEntity> entities = new ArrayList<>();
+            int x = 1, y = 1;
+            for (String s : list) {
+                String[] split = s.split(",");
+                if (x == 1) {
+                    x++;
+                    continue;
+                }
+
+                DataTableEntity entity = new DataTableEntity(Integer.valueOf(split[0]),
+                        getDouble(split[1]), getDouble(split[2]), getDouble(split[3]), getDouble(split[4]),
+                        getDouble(split[5]), getDouble(split[6]), getDouble(split[7]), getDouble(split[8])
+                );
+
+
+                Double j = (getDouble(split[4]) - 10) * (getDouble(split[4]) - 10);
+                Double k = (getDouble(split[4]) - 13) * (getDouble(split[4]) - 13);
+                Double l = (getDouble(split[4]) - 16) * (getDouble(split[4]) - 16);
+                Double m = (-1 * 0.00002 * getDouble(split[6])) + (0.0082 * getDouble(split[6])) + (0.1456 * getDouble(split[6])) - 0.1599;
+                entity.setJ(Math.sqrt(j));
+                entity.setK(Math.sqrt(k));
+                entity.setL(Math.sqrt(l));
+                entity.setM(m);
+                entities.add(entity);
+                y++;
+            }
+            ExportExcelUtils.easyWrite(entities, null,"E:\\download\\cao\\12data\\12data\\down\\Batangas\\" + file1.getName());
+            System.out.println(i);
+            i++;
+        }
+    }
+
+    static void exportIdList() {
+        List<String> read = FileRead.read("E:\\download\\新建文本文档 (2).txt");
+        StringBuilder builder = new StringBuilder("(");
+
+        for (int i = 0; i < read.size(); i++) {
+            //            System.out.println("`" + s);
+//            String s = read.get(i).trim();
+
+//            String s = read.get(i).split("/M")[1];
+//            builder.append("'").append("M");
+//            if (i == read.size() - 1) {
+//                builder.append(s);
+//            } else {
+//                builder.append(s).append("'").append(",");
+//            }
+
+            builder.append(read.get(i)).append(",");
+        }
+        builder.append(")");
+        System.out.println(builder.toString());
+    }
+
+    static Double getDouble(String s) {
+        return StringUtils.isEmpty(s) ? Double.valueOf(0) : Double.valueOf(s);
     }
 }

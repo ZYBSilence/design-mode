@@ -2,8 +2,11 @@ package work;
 
 
 import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.metadata.BaseRowModel;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import org.apache.poi.ss.formula.functions.T;
+import work.entity.DataTableCEntity;
 import work.entity.DataTableEntity;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +27,7 @@ public class ExportExcelUtils {
      * @param list 导出对象集合
      * @param filePath 导出文件路径+文件名
      */
-    public static void easyWrite(List<DataTableEntity> list, String filePath){
+    public static void easyWrite(List<DataTableEntity> list, List<DataTableCEntity> Clist, String filePath){
         ExcelWriter writer = null;
         FileOutputStream outputStream = null;
         try {
@@ -32,9 +35,15 @@ public class ExportExcelUtils {
             //实例化 ExcelWriter
             writer = new ExcelWriter(outputStream, ExcelTypeEnum.XLSX, true);
             //实例化表单
-            Sheet sheet = new Sheet(1, 0, DataTableEntity.class);
-            sheet.setSheetName("目录");
-            writer.write(list, sheet);
+            if (list != null) {
+                Sheet sheet = new Sheet(1, 0, DataTableEntity.class);
+                sheet.setSheetName("目录");
+                writer.write(list, sheet);
+            } else {
+                Sheet sheet = new Sheet(1, 0, DataTableCEntity.class);
+                sheet.setSheetName("目录");
+                writer.write(Clist, sheet);
+            }
             writer.finish();
             outputStream.flush();
         } catch (IOException e) {

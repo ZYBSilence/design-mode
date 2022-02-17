@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.util.StringUtils;
 import sun.security.rsa.RSASignature;
 import work.entity.TestEntity;
 import work.goods.importGoods.A;
@@ -20,10 +21,7 @@ import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
@@ -271,7 +269,91 @@ public class Test {
 ////        }
 //        long afterTime = System.currentTimeMillis() - beforeTime;
 //        System.out.println("\n" + afterTime);
+
+//        List<String> read = FileRead.read("E:\\download\\新建文件夹\\order.txt");
+//        List<String> read = FileRead.read("E:\\download\\新建文件夹\\orderNumber.txt");
+//        List<String> read = FileRead.read("E:\\download\\新建文件夹\\mainOrderNumber.txt");
+//        List<String> read2 = FileRead.read("E:\\download\\新建文件夹\\mainOrderId.txt");
+////        List<String> read = FileRead.read("E:\\download\\新建文件夹\\haveOrderId.txt");
+//        List<String> read = FileRead.read("E:\\download\\数据导出.txt");
+//        List<String> read = FileRead.read("E:\\download\\orderNumbers.txt");
+//        StringBuilder str = new StringBuilder("(");
+////
+////        StringBuilder str1 = new StringBuilder("(");
+//        for (String s : read) {
+//            if (!StringUtils.isEmpty(s)){str.append("'").append(s).append("'").append(",");}
+//            str.append(s.split(" ")[1]).append(",");
+//            str.append("'").append(s).append("'").append(",");
+//            str.append(s).append(",");
+//            StringBuilder str = new StringBuilder("INSERT INTO `chaohaobo`.`market_activity_lottery_chance` ( `activity_id`, `user_id`, `order_id`, `order_number`, `gain_chance_num`, `remain_chance_num`, `validity_date` )\n" +
+//                    "VALUES\n" +
+//                    "\t( 26,");
+//            String[] split = s.split("\t");
+//            str.append(split[1]).append(",").append(split[0]).append(",").append("'").append(split[2]).append("'").append(", 1, 1, '2021-11-21 23:59:59' );");
+//            System.out.println(str.toString());
+
+//            str1.append(split[0]).append(",");
+//        }
+//        str1.append(")");
+//        System.out.println(str1);
+
+//        str.append(")");
+//        System.out.println(str);
+//        System.out.println(read.size());
+//        System.out.println(read2.size());
+//        System.out.println(read2.containsAll(read));
+//        for (String s : read) {
+//            String[] split = s.split("\t");
+//            StringBuilder str = new StringBuilder("INSERT INTO `market_activity_lottery_chance` (`activity_id`, `user_id`, `order_id`, `order_number`, `gain_chance_num`, `remain_chance_num`, `validity_date`, `create_time`, `update_time` ) VALUES (26," );
+//            str.append(split[1]).append(",").append(split[0]).append(",").append("'").append(split[2]).append("'").append(",").append(" 1, 1, '2021-11-19 23:59:59', now(), now());");
+//            System.out.println(str.toString());
+//        }
+//
+//        LocalDateTime now = LocalDateTime.now();
+//        if (now.getYear() == 2021 && now.getMonth().equals(Month.NOVEMBER) && (now.getDayOfMonth() == 13 || now.getDayOfMonth() == 18)){
+//            LocalDateTime createTime = LocalDateTime.of(2021, 11, 13, 14, 36);
+//            LocalDateTime plusMinutes = createTime.plusMinutes(5);
+//            if (plusMinutes.isAfter(now)){
+//                System.out.println(createTime);
+//                System.out.println(plusMinutes);
+//            }
+//        }
+//        Scanner scanner = new Scanner(System.in);
+//        int i = scanner.nextInt();
+//        System.out.println(i);
+//        switch (i){
+//            case 1:
+//            case 2:
+//                System.out.println(111);
+//                break;
+//            case 3:
+//                System.out.println(333);
+//                break;
+//            default:
+//                break;
+//        }
+
+//        BigDecimal bigDecimal = new BigDecimal(10);
+//        bigDecimal = bigDecimal.add(BigDecimal.valueOf(20));
+//        System.out.println(bigDecimal);
+
+        // 算法（集合元素右移）
+//        test();
+        // 集合排序
+//        test2();
+
+        List<TestEntity> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            TestEntity testEntity1 = new TestEntity();
+            testEntity1.setDay(1);
+            list.add(testEntity1);
+        }
+        List<TestEntity> testEntities = list.subList(0, 2);
+        System.out.println(list.subList(0,2));
     }
+
+
+
 
 
     public static void sengWeChatMsg() throws AWTException {
@@ -395,5 +477,48 @@ public class Test {
         System.out.println("老曹：" + price02_1.add(price02_2).add(price03).subtract(BigDecimal.TEN));
         System.out.println("宴宾：" + price01.add(price02_1).multiply(BigDecimal.valueOf(2)));
         System.out.println("老沈：" + priceAvg.multiply(BigDecimal.valueOf(2)));
+    }
+
+
+    public static void test() {
+        Scanner scanner = new Scanner(System.in);
+        int[] nums = new int[5];
+        System.out.println("输入集合元素");
+        for (int i = 0; i < 5; i++) {
+            int nextInt = scanner.nextInt();
+            nums[i] = nextInt;
+        }
+        System.out.println(Arrays.toString(nums));
+        System.out.println("右移位数");
+        int k = scanner.nextInt();
+
+        int[] newNums = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            if (i + k < nums.length) {
+                newNums[i + k] = nums[i];
+            } else {
+                newNums[(i + k) % nums.length] = nums[i];
+            }
+        }
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = newNums[i];
+        }
+    }
+
+    private static void test2() {
+        TestEntity testEntity1 = new TestEntity("70");
+        TestEntity testEntity2 = new TestEntity("111");
+        TestEntity testEntity3 = new TestEntity("10");
+
+        List<TestEntity> list = Arrays.asList(testEntity1, testEntity2, testEntity3);
+        System.out.println(list);
+        /*
+         * int compare(Student o1, Student o2) 返回一个基本类型的整型，
+         * 返回负数表示：o1 小于o2，
+         * 返回0 表示：o1和o2相等，
+         * 返回正数表示：o1大于o2。
+         */
+        list.sort((o1, o2) -> -1 * Integer.compare(Integer.valueOf(o1.getName()), Integer.valueOf(o2.getName())));
+        System.out.println(list);
     }
 }

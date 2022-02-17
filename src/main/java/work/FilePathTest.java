@@ -11,8 +11,8 @@ import java.util.List;
  */
 public class FilePathTest {
     public static void main(String[] args) {
-//        readFilePath("C:\\Users\\1\\Desktop\\小时代体验店处理商品图片");
-        List<File> files = getFileList("C:\\Users\\1\\Desktop\\小时代相关文档", "txt");
+//        readFilePath("C:\\Users\\1\\Desktop\\处理商品图片");
+        List<File> files = getFileList("C:\\Users\\1\\Desktop\\相关文档", "txt");
         System.out.println("=======================================================");
         for (File file : files) {
             System.out.println(file.getName());

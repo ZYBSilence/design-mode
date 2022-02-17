@@ -38,6 +38,10 @@ public class TestEntity {
         this.name = name;
     }
 
+    public TestEntity(String name) {
+        this.name = name;
+    }
+
     public Integer getGroupId() {
         return groupId;
     }
