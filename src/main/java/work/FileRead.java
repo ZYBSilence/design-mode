@@ -7,9 +7,11 @@ import work.entity.DataTableEntity;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -64,7 +66,7 @@ public class FileRead {
         try {
             inputStream = new FileInputStream(file);
             //设置inputStreamReader的构造方法并创建对象设置编码方式为gbk(编码格式可自行切换)
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "gbk"));
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 
             String str = null;
             while ((str = bufferedReader.readLine()) != null) {
@@ -92,11 +94,100 @@ public class FileRead {
     }
 
     public static void main(String[] args) {
-        getHandler();
+//        getHandler();
         // 获取方差相关
 //        getFangCha();
         // 拼接id集合
 //        exportIdList();
+
+
+//        List<Object> returnList = ExcelUtils.readFolder("E:\\work\\线上bug处理\\商编\\商编\\");
+//        StringBuilder stringBuilder = new StringBuilder("(");
+//        int size = 0;
+//        for (int i = 0; i < returnList.size(); i++) {
+//            List<Map<String, String>> maps = (List<Map<String, String>>) returnList.get(i);
+//            for (int j = 0; j < maps.size(); j++) {
+//                String s = maps.get(j).toString();
+//                String replace = s.split("=")[1].replace("}", "");
+//                stringBuilder.append(replace).append(",");
+//                size++;
+//            }
+//        }
+//        stringBuilder.append(")");
+//        System.out.println(stringBuilder.toString());
+//
+//        System.out.println(size);
+
+        // 2022-02-24处理线上订单问题
+        handlerOnlineOrder02_24();
+    }
+
+    /**
+     *
+     */
+    private static void handlerOnlineOrder02_24() {
+        List<Object> returnList = ExcelUtils.readFolder("E:\\work\\线上bug处理\\商编\\商编\\");
+        List<String> yibaoOrderIds = new ArrayList<>();
+        int size = 0;
+        for (int i = 0; i < returnList.size(); i++) {
+            List<Map<String, String>> maps = (List<Map<String, String>>) returnList.get(i);
+            for (int j = 0; j < maps.size(); j++) {
+                String s = maps.get(j).toString();
+                String replace = s.split("=")[1].replace("}", "");
+                yibaoOrderIds.add(replace);
+                size++;
+            }
+        }
+        System.out.println(size);
+
+        // 线上已存在订单id
+        List<String> read = FileRead.read("E:\\work\\线上bug处理\\商编\\订单号.txt");
+        List<String> inOrderIds = new ArrayList<>(read);
+
+        // 保留超好播未成功生成的订单id
+        System.out.println(yibaoOrderIds.removeAll(inOrderIds));
+
+        // 其中统一支付的订单id
+        List<String> read2 = FileRead.read("E:\\work\\线上bug处理\\商编\\统一支付订单号.txt");
+        List<String> tongyiOrderIds = new ArrayList<>(read2);
+
+        // 保留超好播未成功生成的订单id（去除统一支付）
+        System.out.println(yibaoOrderIds.removeAll(tongyiOrderIds));
+        System.out.println(yibaoOrderIds);
+        System.out.println(yibaoOrderIds.size());
+
+        System.out.println("====================");
+
+        StringBuilder stringBuilder2 = new StringBuilder("(");
+        for (String yibaoOrderId : yibaoOrderIds) {
+            System.out.println(yibaoOrderId);
+            stringBuilder2.append(yibaoOrderId).append(",");
+        }
+        stringBuilder2.append(")");
+        System.out.println(stringBuilder2.toString());
+
+        // 已重新生成的订单id
+        List<String> read3 = FileRead.read("E:\\work\\线上bug处理\\商编\\重新生成的订单id.txt");
+        List<String> huifuOrderIds = new ArrayList<>(read3);
+
+        System.out.println("------------------------------");
+        // 未重新生成的订单id
+        yibaoOrderIds.removeAll(huifuOrderIds);
+        System.out.println(yibaoOrderIds);
+
+        for (String yibaoOrderId : yibaoOrderIds) {
+            System.out.println(yibaoOrderId);
+        }
+
+        // 红包订单id
+        List<String> read4 = FileRead.read("E:\\work\\线上bug处理\\商编\\红包订单id.txt");
+        List<String> hongbaoOrderIds = new ArrayList<>(read4);
+        yibaoOrderIds.removeAll(hongbaoOrderIds);
+
+        System.out.println("================");
+        for (String yibaoOrderId : yibaoOrderIds) {
+            System.out.println(yibaoOrderId);
+        }
     }
 
     private static void getHandler() {

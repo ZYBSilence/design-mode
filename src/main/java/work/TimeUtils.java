@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class TimeUtils {
     /**
      * 获取当前日期的前后多少天的日期开始时间
+     *
      * @param num 数值为：正数"+" -> 多少天后，负数"-" -> 多少天前
      * @return 当前日期前后多少天的日期开始时间
      */
@@ -28,12 +29,13 @@ public class TimeUtils {
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND,0);
+        calendar.set(Calendar.MILLISECOND, 0);
         return calendar.getTime();
     }
 
     /**
      * 获取当前日期的前后多少天的日期结束时间
+     *
      * @param num 数值为：正数"+" -> 多少天后，负数"-" -> 多少天前
      * @return 当前日期前后多少天的日期结束时间
      */
@@ -49,10 +51,22 @@ public class TimeUtils {
         return Objects.isNull(number) ? 0 : number;
     }
 
+    /**
+     * 获取当前日期所在月份前后几个月的开始日期
+     *
+     * @param num num 数值为：正数"+" -> 多少月后，负数"-" -> 多少月前
+     * @return 当前日期所在月份前后几个月的开始日期
+     */
     public static Date getFirstDayOfMonth(Integer num) {
         return getDayOfMonth(num, Calendar.getInstance().getActualMinimum(Calendar.DAY_OF_MONTH)).getTime();
     }
 
+    /**
+     * 获取当前日期所在月份前后几个月的结束日期
+     *
+     * @param num num 数值为：正数"+" -> 多少月后，负数"-" -> 多少月前
+     * @return 当前日期所在月份前后几个月的结束日期
+     */
     public static Date getLastDayOfMonth(Integer num) {
         Calendar dayOfMonth = getDayOfMonth(num, Calendar.getInstance().getActualMinimum(Calendar.DAY_OF_MONTH));
         dayOfMonth.add(Calendar.SECOND, -1);
@@ -76,6 +90,7 @@ public class TimeUtils {
 
     /**
      * 获取当前日期月份的第一天的日期
+     *
      * @param month 日期
      * @return 当前日期月份的第一天的日期
      */
@@ -92,6 +107,7 @@ public class TimeUtils {
 
     /**
      * 获取当前日期月份的最后一天的日期
+     *
      * @param month 日期
      * @return 当前日期月份的最后一天的日期
      */
@@ -106,6 +122,7 @@ public class TimeUtils {
 
     /**
      * 获取一天最开始的时间
+     *
      * @param day 日期
      * @return 当天最开始的时间
      */
@@ -120,12 +137,13 @@ public class TimeUtils {
 
     /**
      * 获取一天最后的时间
+     *
      * @param day 日期
      * @return 当天最后的时间
      */
     public static java.util.Date getEndTimeOfDay(Date day) {
         Calendar cale = Calendar.getInstance();
-        // 获取当前月的第一天
+        // 获取一天最开始的时间
         cale.setTime(getBeginTimeOfDay(day));
         cale.add(Calendar.DAY_OF_MONTH, 1);
         cale.add(Calendar.SECOND, -1);
@@ -134,8 +152,9 @@ public class TimeUtils {
 
     /**
      * 获取几天前/后的起始日期
+     *
      * @param thisDay 当前日期
-     * @param days 正数"+" -> 多少天后，负数"-" -> 多少天前
+     * @param days    正数"+" -> 多少天后，负数"-" -> 多少天前
      * @return 几天前/后的起始日期
      */
     public static Date getBeginTimeAfterAddDays(Date thisDay, int days) {
@@ -150,8 +169,9 @@ public class TimeUtils {
 
     /**
      * 获取几天前/后的当前日期
+     *
      * @param thisDay 当前日期
-     * @param days 正数"+" -> 多少天后，负数"-" -> 多少天前
+     * @param days    正数"+" -> 多少天后，负数"-" -> 多少天前
      * @return 几天前/后的当前日期
      */
     public static Date getTimeAfterAddDays(Date thisDay, int days) {
@@ -163,6 +183,7 @@ public class TimeUtils {
 
     /**
      * 将毫秒转为XX小时XX分钟
+     *
      * @param milliseconds 毫秒值
      * @return XX小时XX分钟
      */
@@ -174,11 +195,12 @@ public class TimeUtils {
 
     /**
      * Date转换成LocalDate
+     *
      * @param date Date格式日期
      * @return LocalDate格式日期
      */
     public static LocalDate date2LocalDate(Date date) {
-        if(null == date) {
+        if (null == date) {
             return null;
         }
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -186,11 +208,12 @@ public class TimeUtils {
 
     /**
      * LocalDate转换成Date
+     *
      * @param localDate LocalDate格式日期
      * @return Date格式日期
      */
     public static Date localDate2Date(LocalDate localDate) {
-        if(null == localDate) {
+        if (null == localDate) {
             return null;
         }
         ZonedDateTime zonedDateTime = localDate.atStartOfDay(ZoneId.systemDefault());
@@ -199,6 +222,7 @@ public class TimeUtils {
 
     /**
      * LocalDateTime转换成Date
+     *
      * @param localDateTime localDateTime格式日期
      * @return Date格式日期
      */
@@ -208,6 +232,7 @@ public class TimeUtils {
 
     /**
      * LocalDate格式化
+     *
      * @param date Date格式日期
      * @return 指定格式字符串
      */
@@ -216,6 +241,16 @@ public class TimeUtils {
         return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
+    /**
+     * LocalDateTime格式化
+     *
+     * @param date Date格式日期
+     * @return 指定格式字符串
+     */
+    public static String formatDateTime(Date date) {
+        LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 
 
     public static void main(String[] args) {
