@@ -119,7 +119,17 @@ public class FileRead {
 //        System.out.println(size);
 
         // 2022-02-24处理线上订单问题
-        handlerOnlineOrder02_24();
+//        handlerOnlineOrder02_24();
+
+        List<String> read = read("C:\\Users\\Silence\\Desktop\\dingdan.txt");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : read) {
+            String[] split = s.split(",");
+            for (String s1 : split) {
+                stringBuilder.append("'").append(s1).append("'").append(",");
+            }
+        }
+        System.out.println(stringBuilder.toString());
     }
 
     /**

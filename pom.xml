@@ -117,6 +117,13 @@
             <artifactId>easypoi-annotation</artifactId>
             <version>4.2.0</version>
         </dependency>
+
+        <!-- 处理图片因格式问题导致无法获取imageio -->
+        <dependency>
+            <groupId>com.github.gotson</groupId>
+            <artifactId>webp-imageio</artifactId>
+            <version>0.2.2</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -2,6 +2,8 @@ package work;
 
 import org.apache.ibatis.jdbc.SQL;
 
+import java.util.List;
+
 /**
  * @description: 拼接sql语句
  * @author: zyb
@@ -9,45 +11,49 @@ import org.apache.ibatis.jdbc.SQL;
  */
 public class AssembleSql {
     public static void main(String[] args) {
-        System.out.println("==================== Mybatis3 版本提供的sql语句构造器 ====================");
-        System.out.println("========== 查询sql语句 ==========");
-        String selectSql = select("property1", "property2");
-        System.out.println(selectSql);
-        System.out.println("========== 新增sql语句 ==========");
-        String insertSql = insert("property1", "property2");
-        System.out.println(insertSql);
-        System.out.println("========== 修改sql语句 ==========");
-        String updateSql = update("property1", "property2", 1);
-        System.out.println(updateSql);
-        System.out.println("========== 删除sql语句 ==========");
-        String deleteSql = delete(1);
-        System.out.println(deleteSql);
-
-        System.out.println();
-        System.out.println("==================== Mybatis3.4.2 版本支持可变长度参数 ====================");
-        System.out.println("========== 可变长度参数拼接查询sql语句 ==========");
-        String selectVariableSql = selectVariable("property1");
-        System.out.println(selectVariableSql);
-        System.out.println("========== 可变长度参数拼接新增sql语句 ==========");
-        String insertVariableSql = insertVariable("property1", "property2");
-        System.out.println(insertVariableSql);
-        System.out.println("========== 可变长度参数拼接修改sql语句 ==========");
-        String updateVariableSql = updateVariable("property1", "property2", 1);
-        System.out.println(updateVariableSql);
-
-        System.out.println();
-        System.out.println("==================== Mybatis3.5.2 版本支持构建批量插入语句 ====================");
-        String batchInsertSql = batchInsert();
-        System.out.println(batchInsertSql);
-
-        System.out.println();
-        System.out.println("==================== Mybatis3.5.2 版本支持构建构建限制返回结果数的 SELECT 语句 ====================");
-        System.out.println("========== 限制返回结果数查询sql语句 ==========");
-        String selectWithOffsetLimitSql = selectWithOffsetLimit(100, 10);
-        System.out.println(selectWithOffsetLimitSql);
-        System.out.println("========== 限制返回结果数查询sql语句(sql server 2012 版本以上分页查询sql拼接) ==========");
-        String selectWithFetchFirstSql = selectWithFetchFirst(100, 10);
-        System.out.println(selectWithFetchFirstSql);
+//        System.out.println("==================== Mybatis3 版本提供的sql语句构造器 ====================");
+//        System.out.println("========== 查询sql语句 ==========");
+//        String selectSql = select("property1", "property2");
+//        System.out.println(selectSql);
+//        System.out.println("========== 新增sql语句 ==========");
+//        String insertSql = insert("property1", "property2");
+//        System.out.println(insertSql);
+//        System.out.println("========== 修改sql语句 ==========");
+//        String updateSql = update("property1", "property2", 1);
+//        System.out.println(updateSql);
+//        System.out.println("========== 删除sql语句 ==========");
+//        String deleteSql = delete(1);
+//        System.out.println(deleteSql);
+//
+//        System.out.println();
+//        System.out.println("==================== Mybatis3.4.2 版本支持可变长度参数 ====================");
+//        System.out.println("========== 可变长度参数拼接查询sql语句 ==========");
+//        String selectVariableSql = selectVariable("property1");
+//        System.out.println(selectVariableSql);
+//        System.out.println("========== 可变长度参数拼接新增sql语句 ==========");
+//        String insertVariableSql = insertVariable("property1", "property2");
+//        System.out.println(insertVariableSql);
+//        System.out.println("========== 可变长度参数拼接修改sql语句 ==========");
+//        String updateVariableSql = updateVariable("property1", "property2", 1);
+//        System.out.println(updateVariableSql);
+//
+//        System.out.println();
+//        System.out.println("==================== Mybatis3.5.2 版本支持构建批量插入语句 ====================");
+//        String batchInsertSql = batchInsert();
+//        System.out.println(batchInsertSql);
+//
+//        System.out.println();
+//        System.out.println("==================== Mybatis3.5.2 版本支持构建构建限制返回结果数的 SELECT 语句 ====================");
+//        System.out.println("========== 限制返回结果数查询sql语句 ==========");
+//        String selectWithOffsetLimitSql = selectWithOffsetLimit(100, 10);
+//        System.out.println(selectWithOffsetLimitSql);
+//        System.out.println("========== 限制返回结果数查询sql语句(sql server 2012 版本以上分页查询sql拼接) ==========");
+//        String selectWithFetchFirstSql = selectWithFetchFirst(100, 10);
+//        System.out.println(selectWithFetchFirstSql);
+        List<String> read = FileRead.read("D:\\silence\\work\\对接项目\\发货订单导入\\无规格商品id.txt");
+        for (String s : read) {
+            System.out.println(insert(s, "0") + ";");
+        }
     }
 
     /**
@@ -79,8 +85,8 @@ public class AssembleSql {
      */
     public static String insert(final String property1, final String property2) {
         return new SQL() {{
-            INSERT_INTO("table");
-            VALUES("column_1, column_2", property1 + ", " +  property2);
+            INSERT_INTO("new_goods_sku");
+            VALUES("spu_id, sell_price, business_amount", property1 + ", " +  property2+ ", " +  property2);
         }}.toString();
     }
 

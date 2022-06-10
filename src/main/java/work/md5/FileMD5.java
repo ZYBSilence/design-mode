@@ -7,6 +7,8 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @description:
@@ -57,15 +59,6 @@ public class FileMD5 {
         stringbuffer.append(c1);
     }
 
-    /**
-     * @Description: 取得MD5加密字符串。
-     * @param @param str 加密前的字符串
-     * @param @return
-     * @return String
-     * @throws
-     * @author pengzhihao
-     * @date 2016-7-10下午5:20:37
-     */
     public static String getMD5(String str) {
         String digest = "";
         try {
@@ -104,13 +97,16 @@ public class FileMD5 {
     }
 
     public static void main(String[] args) throws IOException {
+//        System.out.println(getMD5("yumei&test123*"));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        System.out.printf("数据更新至今日%d点%n", calendar.get(Calendar.HOUR_OF_DAY));
+        System.out.println(String.format("数据更新至今日%d点", calendar.get(Calendar.HOUR_OF_DAY)));
+        System.out.println(String.format("数据更新至今日%s点", calendar.get(Calendar.HOUR_OF_DAY)));
+        System.out.println(String.format("数据更新至今日%x点", calendar.get(Calendar.HOUR_OF_DAY)));
+        System.out.println(String.format("数据更新至今日%1$01d点", calendar.get(Calendar.HOUR_OF_DAY)));
 
-//        String md5 = getMd5ByFile(new File("E:\\text\\技术书籍相关\\技术书籍相关.txt"));
-//        System.out.println("MD5:" + md5);
-
-        System.out.println(getMD5("123"));
-        System.out.println(getMD5("123"));
-        System.out.println(getMD5("123"));
     }
-
 }

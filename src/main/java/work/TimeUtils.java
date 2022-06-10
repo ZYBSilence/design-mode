@@ -1,10 +1,8 @@
 package work;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -253,14 +251,24 @@ public class TimeUtils {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 //        Date startTimeOfDay = getStartTimeOfDay(0);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        String startTime = dateFormat.format(startTimeOfDay);
-//        Date endDate = DateUtil.endOfDay(startTimeOfDay).toJdkDate();
-//        System.out.println(startTime);
-//        System.out.println(dateFormat.format(endDate));
-        Date date = getTimeAfterAddDays(new Date(), -1);
-        System.out.println(dateFormat.format(date));
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+////        String startTime = dateFormat.format(startTimeOfDay);
+////        Date endDate = DateUtil.endOfDay(startTimeOfDay).toJdkDate();
+////        System.out.println(startTime);
+////        System.out.println(dateFormat.format(endDate));
+//        Date date = getTimeAfterAddDays(new Date(), -1);
+//        System.out.println(dateFormat.format(date));
+
+//        Calendar instance = Calendar.getInstance();
+//        instance.setTime(new Date());
+//        System.out.println(instance.getWeekYear());
+//        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date parse = dateFormat1.parse("2021-01-01 00:00:00");
+//        instance.setTime(parse);
+//        System.out.println(instance.getWeekYear());
+
+        System.out.println(LocalDateTime.now().with(DayOfWeek.MONDAY));
     }
 }

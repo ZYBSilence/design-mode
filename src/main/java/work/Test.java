@@ -4,10 +4,12 @@ package work;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.util.StringUtils;
 import sun.security.rsa.RSASignature;
+import work.entity.AAABBB;
 import work.entity.TestEntity;
+import work.entity.WithdrawOrderVO;
 import work.goods.importGoods.A;
 import work.thread.ThreadTest;
 
@@ -27,6 +29,7 @@ import java.time.temporal.TemporalAccessor;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -342,19 +345,61 @@ public class Test {
         // 集合排序
 //        test2();
 
-        List<TestEntity> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            TestEntity testEntity1 = new TestEntity();
-            testEntity1.setDay(1);
-            list.add(testEntity1);
-        }
-        List<TestEntity> testEntities = list.subList(0, 2);
-        System.out.println(list.subList(0,2));
+//        List<TestEntity> list = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            TestEntity testEntity1 = new TestEntity();
+//            testEntity1.setDay(1);
+//            list.add(testEntity1);
+//        }
+//        List<TestEntity> testEntities = list.subList(0, 2);
+//        System.out.println(list.subList(0,2));
+
+
+//        WithdrawOrderVO testEntity = JSON.parseObject("{\"withdrawal_id\":\"3705960408792445806\",\"business_type\":\"1\",\"balance_acct_id\":\"2005949036501861036\",\"amount\":1,\"status\":\"succeeded\",\"out_order_no\":\"a8cec8611bfe47e0aaf7aaacef5cb968\",\"created_at\":\"2022-04-18T15:30:20.49+08:00\",\"finished_at\":\"2022-04-18T15:41:00.334+08:00\",\"reason\":null,\"service_fee\":0,\"bank_memo\":null}", WithdrawOrderVO.class);
+//        String s = JSON.toJSONString(testEntity);
+//        System.out.println(testEntity.toString());
+//        System.out.println(s);
+
+//        AAABBB aaabbb = new AAABBB();
+//        aaabbb.setAaabbb(111);
+//
+////        aaa.setAaa(222);
+//        System.out.println(aaabbb.toString());
+
+//        String[] strings = StringUtils.substringsBetween("aa:${a:123},bc:${b},cdd", "${", "}");
+//        for (String string : strings) {
+//            System.out.println(string);
+//        }
+
+//        Map<String, Object> map = new HashMap<>(2);
+////        System.out.println(map.);
+//        System.out.println(1 << 4);
+//        System.out.println(tableSizeFor(7800));
+
+//        System.out.println("aaa" + "\n" + "bbb");
+
+        AtomicInteger giftCanChooseSum = new AtomicInteger(5);
+        integerAdd(giftCanChooseSum);
+
+        System.out.println(giftCanChooseSum);
+        System.out.println(giftCanChooseSum.get());
     }
 
-
-
-
+    static void integerAdd(AtomicInteger a){
+        a.addAndGet(1);
+        System.out.println(a);
+        a.getAndAdd(1);
+        System.out.println(a);
+    }
+    static final int tableSizeFor(int cap) {
+        int n = cap - 1;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        return (n < 0) ? 1 : (n >= 100000) ? 100000 : n + 1;
+    }
 
     public static void sengWeChatMsg() throws AWTException {
         String sentence = "...";// 定义要发送的话

@@ -1,11 +1,15 @@
 package work.entity;
 
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * @description:
  * @author: zyb
  * @date: 2021/1/5 18:35
  */
 public class TestEntity {
+    @JSONField(name = "group_id")
     private Integer groupId;
     private Integer userId;
     private Integer day;
