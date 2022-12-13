@@ -3,7 +3,9 @@ package test;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.scheduling.annotation.EnableAsync;
+import work.ip.IpCityService;
 
+import javax.annotation.Resource;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -95,6 +97,15 @@ public class ThreadTest {
             }
         };
         return runnable;
+    }
+
+    @Resource
+    private IpCityService ipCityService;
+
+    @Test
+    public void testIpAddress() {
+        String ipAddress = ipCityService.getIpAddress("61.130.164.154");
+        System.out.println(ipAddress);
     }
 
 

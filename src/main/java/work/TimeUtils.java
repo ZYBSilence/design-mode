@@ -250,6 +250,16 @@ public class TimeUtils {
         return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
+    /**
+     * LocalDateTime格式化
+     *
+     * @param date Date格式日期
+     * @return 指定格式字符串
+     */
+    public static String formatDateHour(Date date) {
+        LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH"));
+    }
 
     public static void main(String[] args) throws ParseException {
 //        Date startTimeOfDay = getStartTimeOfDay(0);
@@ -269,6 +279,11 @@ public class TimeUtils {
 //        instance.setTime(parse);
 //        System.out.println(instance.getWeekYear());
 
-        System.out.println(LocalDateTime.now().with(DayOfWeek.MONDAY));
+//        System.out.println(LocalDateTime.now().with(DayOfWeek.MONDAY));
+        Calendar cal = Calendar.getInstance();
+        int i = cal.get(Calendar.DATE);
+        System.out.println(i);
+        int i2 = cal.get(Calendar.DAY_OF_MONTH);
+        System.out.println(i2);
     }
 }

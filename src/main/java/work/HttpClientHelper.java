@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
@@ -28,6 +29,12 @@ public class HttpClientHelper {
         postMethod.addRequestHeader("Content-Type", "application/json");
         StringRequestEntity stringRequestEntity = new StringRequestEntity("", "application/json", "UTF-8");
         postMethod.setRequestEntity(stringRequestEntity);
+
+        NameValuePair[] nameValuePairs = {};
+        NameValuePair nameValuePair = new NameValuePair();
+//        nameValuePairs
+        postMethod.setRequestBody(nameValuePairs);
+
         httpClient.executeMethod(postMethod);
 
         String result = postMethod.getResponseBodyAsString();
@@ -45,6 +52,9 @@ public class HttpClientHelper {
         // 设置post请求超时时间
         getMethod.getParams().setParameter(HttpMethodParams.SO_TIMEOUT, 60000);
         getMethod.addRequestHeader("Content-Type", "application/json");
+
+//        getMethod.setParams();
+//        getMethod.setQueryString();
 
         httpClient.executeMethod(getMethod);
 

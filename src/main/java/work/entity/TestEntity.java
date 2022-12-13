@@ -3,6 +3,8 @@ package work.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.util.Date;
+
 /**
  * @description:
  * @author: zyb
@@ -15,6 +17,8 @@ public class TestEntity {
     private Integer day;
     private Integer num;
     private String name;
+
+    private Date datetime;
 
     public TestEntity() {
     }
@@ -86,6 +90,14 @@ public class TestEntity {
         this.name = name;
     }
 
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
     @Override
     public String toString() {
         return "TestEntity{" +
@@ -94,6 +106,7 @@ public class TestEntity {
                 ", day=" + day +
                 ", num=" + num +
                 ", name='" + name + '\'' +
+                ", datetime=" + datetime +
                 '}';
     }
 }

@@ -8,14 +8,10 @@ import work.entity.DataTableEntity;
 import java.io.*;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @author pengzhihao
  * @title: FileRead
  * @projectName kafka-demo
  * @description: TODO
@@ -31,7 +27,7 @@ public class FileRead {
         try {
             inputStream = new FileInputStream(filePath);
             //设置inputStreamReader的构造方法并创建对象设置编码方式为gbk(编码格式可自行切换)
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "gbk"));
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
 
             String str = null;
             while ((str = bufferedReader.readLine()) != null) {
@@ -121,15 +117,38 @@ public class FileRead {
         // 2022-02-24处理线上订单问题
 //        handlerOnlineOrder02_24();
 
-        List<String> read = read("C:\\Users\\Silence\\Desktop\\dingdan.txt");
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String s : read) {
-            String[] split = s.split(",");
-            for (String s1 : split) {
-                stringBuilder.append("'").append(s1).append("'").append(",");
+        List<String> read = read("C:\\Users\\Silence\\Desktop\\新建 文本文档 (2).txt");
+        StringBuilder stringBuilder = new StringBuilder("{");
+
+
+        //======================生成json数据===============================
+        for (int i = 0; i < read.size(); i++) {
+            String[] split = read.get(i).split("\t");
+            stringBuilder.append("\"").append(split[1]).append("\"").append(":").append("\"").append(split[0]).append("\"");
+            if (i != read.size() - 1) {
+                stringBuilder.append(",");
             }
         }
+        stringBuilder.append("}");
+
+        //======================拼接字符串===============================
+//        for (String s : read) {
+//            String[] split = s.split(",");
+//            for (String s1 : split) {
+//                stringBuilder.append("'").append(s1).append("'").append(",");
+//            }
+//        }
+
+        //======================拼接sql===============================
+//        for (String s : read) {
+//            String[] split = s.split("\t");
+//            String sss = String.format("INSERT INTO `basic_company`( `name`, `short_name`, `code`, `parent_id`, `status`, `creator`, `modifier`) VALUES ( '%s', '%s', '%s', -1, 0, 'admin', 'admin');",
+//                    split[1], split[2], split[0]);
+//            System.out.println(sss);
+//        }
+
         System.out.println(stringBuilder.toString());
+
     }
 
     /**

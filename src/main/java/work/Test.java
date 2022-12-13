@@ -1,6 +1,7 @@
 package work;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -21,6 +22,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
@@ -346,11 +348,47 @@ public class Test {
 //        test2();
 
 //        List<TestEntity> list = new ArrayList<>();
+//        Calendar instance = Calendar.getInstance();
 //        for (int i = 0; i < 10; i++) {
 //            TestEntity testEntity1 = new TestEntity();
-//            testEntity1.setDay(1);
+//            testEntity1.setGroupId(1);
+//            testEntity1.setDay(i);
+//            testEntity1.setDatetime(instance.getTime());
 //            list.add(testEntity1);
+//            instance.add(Calendar.MINUTE, 30);
 //        }
+////        Map<Integer, List<Integer>> collect = list.stream().collect(Collectors.groupingBy(TestEntity::getGroupId, Collectors.mapping(TestEntity::getDay, Collectors.toList())));
+//        Map<String, List<TestEntity>> collect = list.stream()
+//                .collect(Collectors.groupingBy(v -> TimeUtils.formatDateHour(v.getDatetime())));
+//        List<Map.Entry<String, List<TestEntity>>> collect1 = collect.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList());
+////        System.out.println(collect);
+//        for (Map.Entry<String, List<TestEntity>> stringListEntry : collect.entrySet()) {
+//            System.out.println(stringListEntry);
+//        }
+//
+//        System.out.println("===========================");
+//        for (Map.Entry<String, List<TestEntity>> stringListEntry : collect1) {
+//            System.out.println(stringListEntry.getKey());
+//            List<TestEntity> value = stringListEntry.getValue();
+//            System.out.println(value);
+//            for (TestEntity testEntity : value) {
+//                System.out.println(testEntity);
+//            }
+//        }
+//
+//        Calendar cal = Calendar.getInstance();
+//        Date time = cal.getTime();
+//        System.out.println(time);
+//        cal.add(Calendar.HOUR_OF_DAY, -2);
+//        Date time1 = cal.getTime();
+//        System.out.println(time1.getTime() - time.getTime());
+
+//        LocalDateTime now = LocalDateTime.now();
+//        for (int i = 0; i < 100; i++) {
+//            System.out.println(now);
+//            now = now.plusHours(1);
+//        }
+//        TimeUtils.
 //        List<TestEntity> testEntities = list.subList(0, 2);
 //        System.out.println(list.subList(0,2));
 
@@ -378,19 +416,75 @@ public class Test {
 
 //        System.out.println("aaa" + "\n" + "bbb");
 
-        AtomicInteger giftCanChooseSum = new AtomicInteger(5);
-        integerAdd(giftCanChooseSum);
+//        AtomicInteger giftCanChooseSum = new AtomicInteger(5);
+//        integerAdd(giftCanChooseSum);
+//
+//        System.out.println(giftCanChooseSum);
+//        System.out.println(giftCanChooseSum.get());
 
-        System.out.println(giftCanChooseSum);
-        System.out.println(giftCanChooseSum.get());
+//        calculateAmount();
+
+//        String str = "B_SO20220701165800693070154";
+//        List<String> split = StrUtil.split(str, StrUtil.C_COMMA);
+//        System.out.println(split.size());
+//        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+//        System.out.println(classLoader);
+//        TestEntity testEntity = new TestEntity();
+//        Optional.empty().ifPresent(x -> {
+//            System.out.println(x);
+//            System.out.println(testEntity);
+//        });
+
+//        String s = StringUtils.joinWith("#", "shopId", "brandId");
+//        System.out.println(s);
+//Set<Long> sets = new HashSet<>();
+//        sets.add(null);
+//        System.out.println(sets);
+        List<String> read = FileRead.read("C:\\Users\\Silence\\Desktop\\新建 文本文档 (6).txt");
+        for (String s : read) {
+//            String[] s1 = s.split("_");
+//            String str = "";
+//            if (s1.length > 1) {
+//                str = s1[1];
+//            } else {
+//                str = s1[0];
+//            }
+//            str = str.split("-")[0];
+//            System.out.println("'" + str.replace("B", "") + "',");
+//            String[] split = s.split("\t");
+//            System.out.println("update new_goods_sku set sku_code = '" + split[2].toUpperCase() + "' where spu_id = " + split[1] + " and id = " + split[0] + " and sku_code = '" + split[2] + "';");
+//            System.out.println("update tz_order_item set goods_code = '" + split[2].toUpperCase() + "' where prod_id = " + split[1] + " and sku_id = " + split[0] + " and goods_code = '" + split[2] + "';");
+            String[] split = s.split("\t");
+            if (StringUtils.isNotBlank(split[0])) {
+                System.out.println("update new_goods_sku set sku_code = '" + split[0] + "' where id = " + split[1] + ";");
+            }
+        }
     }
 
-    static void integerAdd(AtomicInteger a){
+    private static void calculateAmount() {
+        double pCarAmount = 9.46 + 23.45 + 112.7 + 107.6;
+        double liuCarAmount = 55;
+        double zCarAmount = 47.14 + 89.9 + 10.19 + 12 + 26.39 + 93.7 + (116 + 138) * 5;
+
+        double totalAmount = pCarAmount + liuCarAmount + zCarAmount;
+        double personNum = 5;
+
+        BigDecimal price02_1 = BigDecimal.valueOf(totalAmount)
+                .divide(BigDecimal.valueOf(personNum), BigDecimal.ROUND_DOWN);
+        System.out.println("彭老板打车费用：" + pCarAmount);
+        System.out.println("刘总打车费用：" + liuCarAmount);
+        System.out.println("张出纳：" + zCarAmount);
+        System.out.println("累计：" + totalAmount);
+        System.out.println("总共5人平均：" + price02_1);
+    }
+
+    static void integerAdd(AtomicInteger a) {
         a.addAndGet(1);
         System.out.println(a);
         a.getAndAdd(1);
         System.out.println(a);
     }
+
     static final int tableSizeFor(int cap) {
         int n = cap - 1;
         n |= n >>> 1;
