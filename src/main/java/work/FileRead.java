@@ -117,19 +117,19 @@ public class FileRead {
         // 2022-02-24处理线上订单问题
 //        handlerOnlineOrder02_24();
 
-        List<String> read = read("C:\\Users\\Silence\\Desktop\\新建 文本文档 (2).txt");
-        StringBuilder stringBuilder = new StringBuilder("{");
+        List<String> read = read("C:\\Users\\Silence\\Desktop\\新建 文本文档 (4).txt");
+        StringBuilder stringBuilder = new StringBuilder("");
 
 
         //======================生成json数据===============================
-        for (int i = 0; i < read.size(); i++) {
-            String[] split = read.get(i).split("\t");
-            stringBuilder.append("\"").append(split[1]).append("\"").append(":").append("\"").append(split[0]).append("\"");
-            if (i != read.size() - 1) {
-                stringBuilder.append(",");
-            }
-        }
-        stringBuilder.append("}");
+//        for (int i = 0; i < read.size(); i++) {
+//            String[] split = read.get(i).split("\t");
+//            stringBuilder.append("\"").append(split[1]).append("\"").append(":").append("\"").append(split[0]).append("\"");
+//            if (i != read.size() - 1) {
+//                stringBuilder.append(",");
+//            }
+//        }
+//        stringBuilder.append("}");
 
         //======================拼接字符串===============================
 //        for (String s : read) {
@@ -138,6 +138,10 @@ public class FileRead {
 //                stringBuilder.append("'").append(s1).append("'").append(",");
 //            }
 //        }
+
+        for (String s : read) {
+            stringBuilder.append(s).append(",");
+        }
 
         //======================拼接sql===============================
 //        for (String s : read) {
@@ -264,7 +268,7 @@ public class FileRead {
 //
 //                }
 
-                if (j == 1){
+                if (j == 1) {
 //                    entity = new DataTableCEntity(split[0],
 //                            split[3], split[4], split[5], split[6], split[7],
 //                            split[24], split[25], split[26], split[27], split[28],
@@ -323,7 +327,7 @@ public class FileRead {
                 entities.add(entity);
                 y++;
             }
-            ExportExcelUtils.easyWrite(entities, null,"E:\\download\\cao\\12data\\12data\\down\\Batangas\\" + file1.getName());
+            ExportExcelUtils.easyWrite(entities, null, "E:\\download\\cao\\12data\\12data\\down\\Batangas\\" + file1.getName());
             System.out.println(i);
             i++;
         }

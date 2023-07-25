@@ -440,25 +440,67 @@ public class Test {
 //Set<Long> sets = new HashSet<>();
 //        sets.add(null);
 //        System.out.println(sets);
-        List<String> read = FileRead.read("C:\\Users\\Silence\\Desktop\\新建 文本文档 (6).txt");
-        for (String s : read) {
-//            String[] s1 = s.split("_");
-//            String str = "";
-//            if (s1.length > 1) {
-//                str = s1[1];
-//            } else {
-//                str = s1[0];
+//        List<String> read = FileRead.read("C:\\Users\\Silence\\Desktop\\新建 文本文档 (9).txt");
+//        for (String s : read) {
+//////            String[] s1 = s.split("_");
+//////            String str = "";
+//////            if (s1.length > 1) {
+//////                str = s1[1];
+//////            } else {
+//////                str = s1[0];
+//////            }
+//////            str = str.split("-")[0];
+//////            System.out.println("'" + str.replace("B", "") + "',");
+//////            String[] split = s.split("\t");
+//////            System.out.println("update new_goods_sku set sku_code = '" + split[2].toUpperCase() + "' where spu_id = " + split[1] + " and id = " + split[0] + " and sku_code = '" + split[2] + "';");
+//////            System.out.println("update tz_order_item set goods_code = '" + split[2].toUpperCase() + "' where prod_id = " + split[1] + " and sku_id = " + split[0] + " and goods_code = '" + split[2] + "';");
+////            String[] split = s.split("\t");
+//////            if (StringUtils.isNotBlank(split[0])) {
+//////                System.out.println("update new_goods_sku set sku_code = '" + split[0] + "' where id = " + split[1] + ";");
+//////            }
+////            System.out.println("INSERT INTO `temp_mrj_department`(`department`, `user_name`, `live_num`, `sender_live_num`, `overseas_id_card`, `user_type`, `create_time`) VALUES ('" + split[0].trim() + "', '" + split[1].trim() + "', "+split[2].trim()+", "+split[3].trim()+", '', 1, now());");
+//            String[] s1 = s.split(" ");
+//            if (s1.length > 0) {
+//                System.out.println("'" + s1[0] +"',");
 //            }
-//            str = str.split("-")[0];
-//            System.out.println("'" + str.replace("B", "") + "',");
-//            String[] split = s.split("\t");
-//            System.out.println("update new_goods_sku set sku_code = '" + split[2].toUpperCase() + "' where spu_id = " + split[1] + " and id = " + split[0] + " and sku_code = '" + split[2] + "';");
-//            System.out.println("update tz_order_item set goods_code = '" + split[2].toUpperCase() + "' where prod_id = " + split[1] + " and sku_id = " + split[0] + " and goods_code = '" + split[2] + "';");
-            String[] split = s.split("\t");
-            if (StringUtils.isNotBlank(split[0])) {
-                System.out.println("update new_goods_sku set sku_code = '" + split[0] + "' where id = " + split[1] + ";");
-            }
-        }
+//        }
+////
+////        System.out.println("=====================");
+////        List<String> read1 = FileRead.read("C:\\Users\\Silence\\Desktop\\新建 文本文档 (4).txt");
+////        for (String s : read1) {
+////            String[] split = s.split("\t");
+////            System.out.println("INSERT INTO `temp_mrj_department`(`department`, `user_name`, `live_num`, `sender_live_num`, `overseas_id_card`, `user_type`, `create_time`) VALUES ('" + split[0].trim() + "', '" + split[1].trim() + "', "+split[2].trim()+", "+split[2].trim()+", '"+split[3].trim()+"', 2, now());");
+////        }
+////
+////        Random random = new Random();
+////        for (int i1 = 0; i1 < 10; i1++) {
+////            System.out.println(random.nextInt(0));
+////        }
+//
+////        HashMap<BigDecimal, String> map1 = new HashMap<>();
+////        map1.put(new BigDecimal("111.000"), "111");
+////        System.out.println(map1.get(new BigDecimal("111")));
+//        int[] aa = new int[127];
+//        String str = "2341234";
+//        char c = str.charAt(1);
+//        LocalDateTime now = LocalDateTime.now();
+//        LocalDateTime of = LocalDateTime.of(2023, 4, 10, 15, 21, 22);
+//        Duration between = Duration.between(of, now);
+//        System.out.println(between.toDays());
+//        System.out.println(between.toMinutes());
+
+//        String s = "A116303, A135366, A144342, A151414, A171298, A17945, A181308, A207657, A211733, A219106, A220183, A225791, A226390, A24917, A252892, A264307, A275154, A280529, A285258, A303141, A31611, A327066, A327680, A33148, A331676, A33423, A36412, A372544, A38985, A415111 , A417155, A425676, A428819, A430504, A443689, A44638, A455125, A486839, A503993, A530254, A531316, A542948, A551819, A567952, A569615, A570046, A583380, A586574, A604018, A605203, A605636, A606258, A615842, A620324, A624449, A626792, A631223, A631411, A634847, A635993, A637067, A639749, A639764, A639776, A640571, A642661, A643202, A643363, A644630, A644783, A645060, A648457, A652082, A652573, A657834, A658942, A660180, A660500, A663229, A663922, A669248, A670689, A672267, A94208, A95995";
+//        String[] split = s.split(",");
+//        for (String s1 : split) {
+//            System.out.println("INSERT INTO `mrj_shop`.`score_user`(`user_sign`, `user_name`, `channel_no`) VALUES ( 'A107631', '李丽', 1)" + s1.trim() );
+//        }
+
+
+        List<String> a = Arrays.asList("A");
+        a.add("B");
+//        List<String> list = new ArrayList<String>(10);
+//        list.add(2, "1");
+//        System.out.println(list.get(0));
     }
 
     private static void calculateAmount() {
