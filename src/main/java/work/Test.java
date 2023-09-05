@@ -496,11 +496,28 @@ public class Test {
 //        }
 
 
-        List<String> a = Arrays.asList("A");
-        a.add("B");
+//        List<String> a = Arrays.asList("A","B","C","D");
+//        List<String> b = Arrays.asList("A","B");
+//        List<String> c = Arrays.asList();
+//        System.out.println(a.subList(a.size() - 3, a.size()));
+//        System.out.println(b.subList(Math.max(b.size() - 3, 0), b.size()));
+//        System.out.println(c.subList(Math.max(c.size() - 3, 0), c.size()));
 //        List<String> list = new ArrayList<String>(10);
 //        list.add(2, "1");
 //        System.out.println(list.get(0));
+
+        TestEntity testEntity = new TestEntity();
+        List<TestEntity> testEntities = new ArrayList<>();
+        testEntities.add(testEntity);
+        System.out.println(JSON.toJSONString(testEntities));
+        List<TestEntity> collect = testEntities.stream().peek(entry -> entry.setNum(1)).collect(Collectors.toList());
+        System.out.println(JSON.toJSONString(testEntities));
+        System.out.println(JSON.toJSONString(collect));
+
+        AtomicInteger dealNum = new AtomicInteger(0);
+        dealNum.getAndAdd(1);
+        dealNum.incrementAndGet();
+        System.out.println(dealNum.get());
     }
 
     private static void calculateAmount() {
