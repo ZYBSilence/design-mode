@@ -2,6 +2,7 @@ package work;
 
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.digest.MD5;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -506,18 +507,27 @@ public class Test {
 //        list.add(2, "1");
 //        System.out.println(list.get(0));
 
-        TestEntity testEntity = new TestEntity();
-        List<TestEntity> testEntities = new ArrayList<>();
-        testEntities.add(testEntity);
-        System.out.println(JSON.toJSONString(testEntities));
-        List<TestEntity> collect = testEntities.stream().peek(entry -> entry.setNum(1)).collect(Collectors.toList());
-        System.out.println(JSON.toJSONString(testEntities));
-        System.out.println(JSON.toJSONString(collect));
+//        TestEntity testEntity = new TestEntity();
+//        List<TestEntity> testEntities = new ArrayList<>();
+//        testEntities.add(testEntity);
+//        System.out.println(JSON.toJSONString(testEntities));
+//        List<TestEntity> collect = testEntities.stream().peek(entry -> entry.setNum(1)).collect(Collectors.toList());
+//        System.out.println(JSON.toJSONString(testEntities));
+//        System.out.println(JSON.toJSONString(collect));
+//
+//        AtomicInteger dealNum = new AtomicInteger(0);
+//        dealNum.getAndAdd(1);
+//        dealNum.incrementAndGet();
+//        System.out.println(dealNum.get());
 
-        AtomicInteger dealNum = new AtomicInteger(0);
-        dealNum.getAndAdd(1);
-        dealNum.incrementAndGet();
-        System.out.println(dealNum.get());
+//        TestEntity[] array = {new TestEntity(1),new TestEntity(2) };
+//        System.out.println(array.length);
+//        array[array.length - 1] = null;
+//        System.out.println(array.length);
+
+        MD5 md5 = MD5.create();
+        String s = md5.digestHex("123456");
+        System.out.println(s);
     }
 
     private static void calculateAmount() {

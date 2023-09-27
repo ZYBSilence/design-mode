@@ -1,5 +1,7 @@
 package work.md5;
 
+import cn.hutool.crypto.digest.MD5;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -98,15 +100,18 @@ public class FileMD5 {
 
     public static void main(String[] args) throws IOException {
 //        System.out.println(getMD5("yumei&test123*"));
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        System.out.printf("数据更新至今日%d点%n", calendar.get(Calendar.HOUR_OF_DAY));
-        System.out.println(String.format("数据更新至今日%d点", calendar.get(Calendar.HOUR_OF_DAY)));
-        System.out.println(String.format("数据更新至今日%s点", calendar.get(Calendar.HOUR_OF_DAY)));
-        System.out.println(String.format("数据更新至今日%x点", calendar.get(Calendar.HOUR_OF_DAY)));
-        System.out.println(String.format("数据更新至今日%1$01d点", calendar.get(Calendar.HOUR_OF_DAY)));
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(new Date());
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        System.out.printf("数据更新至今日%d点%n", calendar.get(Calendar.HOUR_OF_DAY));
+//        System.out.println(String.format("数据更新至今日%d点", calendar.get(Calendar.HOUR_OF_DAY)));
+//        System.out.println(String.format("数据更新至今日%s点", calendar.get(Calendar.HOUR_OF_DAY)));
+//        System.out.println(String.format("数据更新至今日%x点", calendar.get(Calendar.HOUR_OF_DAY)));
+//        System.out.println(String.format("数据更新至今日%1$01d点", calendar.get(Calendar.HOUR_OF_DAY)));
 
+        MD5 md5 = MD5.create();
+        String s = MD5.create().digestHex("1222");
+        System.out.println(s);
     }
 }

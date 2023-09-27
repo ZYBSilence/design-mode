@@ -1,0 +1,28 @@
+package demo;
+
+
+
+/**
+ * @description: JVM调优测试
+ * @author: zyb
+ * @date: 2023/9/12 17:04
+ */
+public class JvmOptimize {
+    public static void main(String[] args) {
+
+        // 1
+//        byte[] b = new byte[1 * 1024 * 1024];
+//        System.out.println("分配了1M空间给数组");
+
+        // 2
+//        byte[] b = new byte[10 * 1024 * 1024];
+//        System.out.println("分配了10M空间给数组");
+
+        // 3
+//        System.gc();
+//        System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");    //系统的最大空间
+//        System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
+//        System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
+
+    }
+}
