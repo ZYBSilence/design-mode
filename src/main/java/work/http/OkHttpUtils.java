@@ -1,4 +1,4 @@
-package work;
+package work.http;
 
 import okhttp3.*;
 import org.apache.commons.lang3.exception.ExceptionUtils;

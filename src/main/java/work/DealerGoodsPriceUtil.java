@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.util.StringUtils;
+import work.http.HttpUtil;
 
 import java.util.*;
 import java.util.stream.Collectors;

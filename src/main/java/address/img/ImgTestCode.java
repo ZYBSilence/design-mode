@@ -5,7 +5,7 @@ import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
-import work.HttpClientHelper;
+import work.http.HttpClientHelper;
 
 import java.io.File;
 import java.io.IOException;

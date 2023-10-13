@@ -1,4 +1,4 @@
-package work;
+package work.http;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package work;
+package work.http;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.Consts;
