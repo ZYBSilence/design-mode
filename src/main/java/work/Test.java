@@ -1,6 +1,8 @@
 package work;
 
 
+import cn.hutool.core.codec.Base64;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.MD5;
 import com.alibaba.fastjson.JSON;
@@ -507,9 +509,20 @@ public class Test {
 //        list.add(2, "1");
 //        System.out.println(list.get(0));
 
-//        TestEntity testEntity = new TestEntity();
+
 //        List<TestEntity> testEntities = new ArrayList<>();
-//        testEntities.add(testEntity);
+//        TestEntity testEntity = new TestEntity();
+//        testEntity.setUserId(1);
+//        testEntity.setName(null);
+//        TestEntity testEntity1 = new TestEntity();
+//        testEntity1.setUserId(2);
+//        testEntity1.setName("cc");
+//        testEntities.add(testEntity1);
+//        Map<Integer, List<String>> collect = testEntities.stream()
+//                .collect(Collectors.groupingBy(TestEntity::getUserId,
+//                        Collectors.mapping(TestEntity::getName,
+//                                Collectors.toList())));
+//        System.out.println(JSON.toJSONString(collect));
 //        System.out.println(JSON.toJSONString(testEntities));
 //        List<TestEntity> collect = testEntities.stream().peek(entry -> entry.setNum(1)).collect(Collectors.toList());
 //        System.out.println(JSON.toJSONString(testEntities));
@@ -525,9 +538,14 @@ public class Test {
 //        array[array.length - 1] = null;
 //        System.out.println(array.length);
 
-        MD5 md5 = MD5.create();
-        String s = md5.digestHex("123456");
-        System.out.println(s);
+//        MD5 md5 = MD5.create();
+//        String s = md5.digestHex("123456");
+//        System.out.println(s);
+
+        StringBuilder stringBuilder = new StringBuilder("admin");
+        stringBuilder.append(StrUtil.COLON).append(IdUtil.simpleUUID().replaceAll(StrUtil.DASHED, StrUtil.EMPTY));
+        System.out.println(stringBuilder);
+        System.out.println(Base64.encode(stringBuilder.toString()));
     }
 
     private static void calculateAmount() {
