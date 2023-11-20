@@ -556,8 +556,7 @@ public class Test {
         double totalAmount = pCarAmount + liuCarAmount + zCarAmount;
         double personNum = 5;
 
-        BigDecimal price02_1 = BigDecimal.valueOf(totalAmount)
-                .divide(BigDecimal.valueOf(personNum), BigDecimal.ROUND_DOWN);
+        BigDecimal price02_1 = BigDecimal.valueOf(totalAmount).divide(BigDecimal.valueOf(personNum), BigDecimal.ROUND_DOWN);
         System.out.println("彭老板打车费用：" + pCarAmount);
         System.out.println("刘总打车费用：" + liuCarAmount);
         System.out.println("张出纳：" + zCarAmount);
@@ -660,9 +659,7 @@ public class Test {
         double retailPrice01Zhao = 360; // 支付宝已转（老赵）
         double personNum01 = 8;
         System.out.println("不算老曹，老沈和宴宾需乘2");
-        BigDecimal price01 = BigDecimal.valueOf(retailPrice01Zhang)
-                .add(BigDecimal.valueOf(retailPrice01Zhao))
-                .divide(BigDecimal.valueOf(personNum01), BigDecimal.ROUND_DOWN);
+        BigDecimal price01 = BigDecimal.valueOf(retailPrice01Zhang).add(BigDecimal.valueOf(retailPrice01Zhao)).divide(BigDecimal.valueOf(personNum01), BigDecimal.ROUND_DOWN);
         System.out.println("12号第一天支出，平均每人：" + price01);
         System.out.println("=============================");
 
@@ -671,17 +668,14 @@ public class Test {
         double retailPrice02Up = 330 + 630; // 老曹船票多算10块
         double personNum02Up = 9;
         System.out.println("总共九人，老沈和宴宾需乘2");
-        BigDecimal price02_1 = BigDecimal.valueOf(retailPrice02YanLei)
-                .add(BigDecimal.valueOf(retailPrice02Up))
-                .divide(BigDecimal.valueOf(personNum02Up), BigDecimal.ROUND_DOWN);
+        BigDecimal price02_1 = BigDecimal.valueOf(retailPrice02YanLei).add(BigDecimal.valueOf(retailPrice02Up)).divide(BigDecimal.valueOf(personNum02Up), BigDecimal.ROUND_DOWN);
         System.out.println("13号上午支出，平均每人：" + price02_1);
         System.out.println("=============================");
 
         System.out.println("不算宴宾和他对象，老沈需乘2");
         double retailPrice02Down = 424; // 美团 318 + 支付宝 106
         double personNum02Down = 7;
-        BigDecimal price02_2 = BigDecimal.valueOf(retailPrice02Down)
-                .divide(BigDecimal.valueOf(personNum02Down), BigDecimal.ROUND_DOWN);
+        BigDecimal price02_2 = BigDecimal.valueOf(retailPrice02Down).divide(BigDecimal.valueOf(personNum02Down), BigDecimal.ROUND_DOWN);
         System.out.println("13号下午支出，平均每人：" + price02_2);
         System.out.println("=============================");
 
@@ -689,8 +683,7 @@ public class Test {
         System.out.println("老沈需乘2");
         double retailPrice03 = 62 + 4.3 + 7.5 + 5 + 12.5 + 12.8 + 37 + 14.4;
         double personNum03 = 7;
-        BigDecimal price03 = BigDecimal.valueOf(retailPrice03)
-                .divide(BigDecimal.valueOf(personNum03), BigDecimal.ROUND_DOWN);
+        BigDecimal price03 = BigDecimal.valueOf(retailPrice03).divide(BigDecimal.valueOf(personNum03), BigDecimal.ROUND_DOWN);
         System.out.println("14号平均每人：" + price03);
 
         System.out.println("==========================================================");
