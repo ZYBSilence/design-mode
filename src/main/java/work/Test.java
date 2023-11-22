@@ -545,6 +545,7 @@ public class Test {
         StringBuilder stringBuilder = new StringBuilder("admin");
         stringBuilder.append(StrUtil.COLON).append(IdUtil.simpleUUID().replaceAll(StrUtil.DASHED, StrUtil.EMPTY));
         System.out.println(stringBuilder);
+
         System.out.println(Base64.encode(stringBuilder.toString()));
     }
 
