@@ -280,10 +280,19 @@ public class TimeUtils {
 //        System.out.println(instance.getWeekYear());
 
 //        System.out.println(LocalDateTime.now().with(DayOfWeek.MONDAY));
-        Calendar cal = Calendar.getInstance();
-        int i = cal.get(Calendar.DATE);
-        System.out.println(i);
-        int i2 = cal.get(Calendar.DAY_OF_MONTH);
-        System.out.println(i2);
+//        Calendar cal = Calendar.getInstance();
+//        int i = cal.get(Calendar.DATE);
+//        System.out.println(i);
+//        int i2 = cal.get(Calendar.DAY_OF_MONTH);
+//        System.out.println(i2);
+
+        Calendar cale = Calendar.getInstance();
+        cale.set(Calendar.MONTH, 0);
+        cale.set(Calendar.DAY_OF_MONTH, 1);
+        cale.set(Calendar.HOUR_OF_DAY, 0);
+        cale.set(Calendar.MINUTE, 0);
+        cale.set(Calendar.SECOND, 0);
+
+        System.out.println(formatDateTime(cale.getTime()));
     }
 }

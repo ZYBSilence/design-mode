@@ -2,13 +2,16 @@ package work;
 
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.MD5;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import sun.security.rsa.RSASignature;
 import work.entity.AAABBB;
@@ -35,6 +38,7 @@ import java.util.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -518,6 +522,7 @@ public class Test {
 //        testEntity1.setUserId(2);
 //        testEntity1.setName("cc");
 //        testEntities.add(testEntity1);
+
 //        Map<Integer, List<String>> collect = testEntities.stream()
 //                .collect(Collectors.groupingBy(TestEntity::getUserId,
 //                        Collectors.mapping(TestEntity::getName,
@@ -542,12 +547,65 @@ public class Test {
 //        String s = md5.digestHex("123456");
 //        System.out.println(s);
 
-        StringBuilder stringBuilder = new StringBuilder("admin");
-        stringBuilder.append(StrUtil.COLON).append(IdUtil.simpleUUID().replaceAll(StrUtil.DASHED, StrUtil.EMPTY));
-        System.out.println(stringBuilder);
+//        StringBuilder stringBuilder = new StringBuilder("admin");
+//        stringBuilder.append(StrUtil.COLON).append(IdUtil.simpleUUID().replaceAll(StrUtil.DASHED, StrUtil.EMPTY));
+//        System.out.println(stringBuilder);
+//
+//
+//        System.out.println(Base64.encode(stringBuilder.toString()));
+//        Boolean sss = null;
+////        System.out.printf(Boolean.TRUE.equals(sss));
+//        boolean equals = Boolean.TRUE.equals(sss);
+//        System.out.println(equals);
 
 
-        System.out.println(Base64.encode(stringBuilder.toString()));
+//        TestEntity test = new TestEntity();
+//
+//
+//        List<TestEntity> testEntities = new ArrayList<>();
+//        TestEntity testEntity = new TestEntity();
+//        testEntity.setUserId(1);
+//        testEntity.setName("aa");
+//        TestEntity testEntity1 = new TestEntity();
+//        testEntity1.setUserId(2);
+//        testEntity1.setName("bb");
+//        TestEntity testEntity2 = new TestEntity();
+//        testEntity2.setUserId(1);
+//        testEntity2.setName("cc");
+//        testEntities.add(testEntity);
+//        testEntities.add(testEntity1);
+//        testEntities.add(testEntity2);
+//
+//
+////        Optional.ofNullable(getGoodsExtends(testEntities, 1)).ifPresent(v -> test.setName(v.getName()));
+////        System.out.println(JSON.toJSONString(test));
+//
+//        fillAttr(testEntities, 2, test::setName);
+//        System.out.println(JSON.toJSONString(test));
+
+//        Double aDouble = Convert.toDouble(new BigDecimal("0.1111"), NumberUtils.DOUBLE_ZERO);
+//        System.out.println(aDouble);
+//        String s = NumberUtil.decimalFormat("#.##%", Convert.toDouble(new BigDecimal("0.1111"), NumberUtils.DOUBLE_ZERO));
+//        System.out.println(s);
+
+//        List<String> strList = new ArrayList<>();
+//        handlerList(strList);
+//        System.out.println(strList);
+
+        String rowKey = new StringBuilder("RE101000110903864282").reverse() + "_" + "RECEIVE_SYNC" + "_" + "TAG_XH";
+        System.out.println(rowKey);
+    }
+
+    private static void handlerList(List<String> strList){
+        strList.add("a");
+    }
+    private static TestEntity getGoodsExtends(List<TestEntity> innerBaseGoodsExtendsDOS, Integer aaa) {
+        return innerBaseGoodsExtendsDOS.stream().filter(c -> c.getUserId().equals(aaa)).findAny().orElse(null);
+    }
+
+    static void fillAttr(List<TestEntity> list, Integer aaa, Consumer<String> consumer){
+        TestEntity baseGoodsExtendsDO = list.stream().filter(c -> c.getUserId().equals(aaa)).findAny().orElse(null);
+        Optional.ofNullable(baseGoodsExtendsDO).ifPresent(v -> consumer.accept(v.getName()));
     }
 
     private static void calculateAmount() {
