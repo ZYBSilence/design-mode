@@ -2,7 +2,6 @@ package work.beancopy;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.google.common.collect.Lists;
-import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.beans.BeanCopier;
 import net.sf.cglib.beans.BeanMap;
 import org.slf4j.Logger;
@@ -20,7 +19,6 @@ import java.util.*;
 /**
  * Bean属性对拷工具类
  */
-@Slf4j
 public final class BeanUtil {
 
     private static Logger logger = LoggerFactory.getLogger(BeanUtil.class);
@@ -42,7 +40,7 @@ public final class BeanUtil {
      * 使用cglib实现高性能浅对象拷贝, 理论上性能是apache和spring beanutil 100倍以上<br/>
      * 缺点:属性和类型必须一致，而且必须要有getter和setter方法, 否则无法拷贝，<br/>
      * 参阅: <br/>
-     * https://blog.csdn.net/SJZYLC/article/details/81203086 <br/>
+     * https://blogger.csdn.net/SJZYLC/article/details/81203086 <br/>
      * https://www.e-learn.cn/content/qita/1733178
      *
      * @param source
@@ -137,7 +135,7 @@ public final class BeanUtil {
             ObjectInputStream ois = new ObjectInputStream(bis);
             return (T) ois.readObject();
         } catch (Exception e) {
-            log.warn("copyDeep failed", e);
+            logger.warn("copyDeep failed", e);
         }
         return null;
     }
@@ -195,7 +193,7 @@ public final class BeanUtil {
             targetObj = voClass.newInstance();
             BeanUtil.copyShallow(source, targetObj);
         } catch (IllegalAccessException | InstantiationException e) {
-            log.warn("invoke Th3rd toVO get error", e);
+            logger.warn("invoke Th3rd toVO get error", e);
         }
         return targetObj;
     }
